@@ -4,92 +4,606 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Book a Diagnostic — Mircea Oltean</title>
-  <link rel="stylesheet" href="styles.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --ink: #1a1a18;
+      --amber: #c8882a;
+      --amber-light: #e8a84a;
+      --cream: #f7f3ec;
+      --cream-dark: #ede7db;
+      --muted: #6b6560;
+      --border: #d9d0c4;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background-color: var(--cream);
+      color: var(--ink);
+      font-size: 16px;
+      line-height: 1.7;
+    }
+
+    /* NAV */
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.5rem 4rem;
+      border-bottom: 1px solid var(--border);
+      background: var(--cream);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .nav-logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: var(--ink);
+      text-decoration: none;
+      letter-spacing: 0.01em;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2.5rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-size: 0.85rem;
+      font-weight: 400;
+      color: var(--muted);
+      text-decoration: none;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover,
+    .nav-links a.active { color: var(--ink); }
+
+    /* HERO */
+    .hero {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 5rem 2rem 3rem;
+      text-align: center;
+    }
+
+    .badge {
+      display: inline-block;
+      font-size: 0.72rem;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--amber);
+      border: 1px solid var(--amber);
+      padding: 0.3rem 0.9rem;
+      border-radius: 2rem;
+      margin-bottom: 1.8rem;
+    }
+
+    .hero h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2.4rem, 5vw, 3.6rem);
+      font-weight: 500;
+      line-height: 1.15;
+      color: var(--ink);
+      margin-bottom: 1.2rem;
+    }
+
+    .hero p {
+      font-size: 1.05rem;
+      color: var(--muted);
+      max-width: 540px;
+      margin: 0 auto;
+      font-weight: 300;
+    }
+
+    /* DIVIDER */
+    .divider {
+      width: 48px;
+      height: 2px;
+      background: var(--amber);
+      margin: 3rem auto;
+    }
+
+    /* TWO COLUMN LAYOUT */
+    .layout {
+      max-width: 1060px;
+      margin: 0 auto;
+      padding: 0 2rem 6rem;
+      display: grid;
+      grid-template-columns: 1fr 1.4fr;
+      gap: 5rem;
+      align-items: start;
+    }
+
+    /* LEFT COLUMN */
+    .info h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.5rem;
+      font-weight: 500;
+      margin-bottom: 1rem;
+      color: var(--ink);
+    }
+
+    .info p {
+      font-size: 0.95rem;
+      color: var(--muted);
+      margin-bottom: 1.4rem;
+      font-weight: 300;
+      line-height: 1.8;
+    }
+
+    .info-block {
+      background: var(--cream-dark);
+      border-left: 3px solid var(--amber);
+      padding: 1.2rem 1.4rem;
+      margin: 2rem 0;
+      border-radius: 0 4px 4px 0;
+    }
+
+    .info-block p {
+      margin: 0;
+      font-size: 0.9rem;
+      color: var(--ink);
+      font-style: italic;
+    }
+
+    .criteria {
+      margin-top: 2rem;
+    }
+
+    .criteria h3 {
+      font-size: 0.75rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 0.8rem;
+      font-weight: 500;
+    }
+
+    .criteria ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .criteria ul li {
+      font-size: 0.9rem;
+      color: var(--muted);
+      padding-left: 1.2rem;
+      position: relative;
+      font-weight: 300;
+    }
+
+    .criteria ul li::before {
+      content: '—';
+      position: absolute;
+      left: 0;
+      color: var(--amber);
+    }
+
+    /* FORM */
+    .form-card {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 2.4rem;
+      box-shadow: 0 4px 32px rgba(26,26,24,0.06);
+    }
+
+    .form-card h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.3rem;
+      font-weight: 500;
+      margin-bottom: 0.4rem;
+      color: var(--ink);
+    }
+
+    .form-card .form-subtitle {
+      font-size: 0.85rem;
+      color: var(--muted);
+      margin-bottom: 2rem;
+      font-weight: 300;
+    }
+
+    .field {
+      margin-bottom: 1.4rem;
+    }
+
+    label {
+      display: block;
+      font-size: 0.78rem;
+      font-weight: 500;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 0.4rem;
+    }
+
+    input, select, textarea {
+      width: 100%;
+      padding: 0.75rem 1rem;
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      background: var(--cream);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.95rem;
+      color: var(--ink);
+      font-weight: 300;
+      transition: border-color 0.2s, box-shadow 0.2s;
+      outline: none;
+      -webkit-appearance: none;
+    }
+
+    input:focus, select:focus, textarea:focus {
+      border-color: var(--amber);
+      box-shadow: 0 0 0 3px rgba(200,136,42,0.12);
+      background: white;
+    }
+
+    textarea {
+      resize: vertical;
+      min-height: 110px;
+      line-height: 1.6;
+    }
+
+    select {
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%236b6560' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 1rem center;
+      padding-right: 2.5rem;
+      cursor: pointer;
+    }
+
+    .submit-btn {
+      width: 100%;
+      padding: 1rem;
+      background: var(--amber);
+      color: white;
+      border: none;
+      border-radius: 4px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.9rem;
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.15s;
+      margin-top: 0.6rem;
+    }
+
+    .submit-btn:hover {
+      background: var(--amber-light);
+      transform: translateY(-1px);
+    }
+
+    .submit-btn:active { transform: translateY(0); }
+
+    .submit-btn:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+      transform: none;
+    }
+
+    .form-note {
+      font-size: 0.78rem;
+      color: var(--muted);
+      text-align: center;
+      margin-top: 1rem;
+      font-weight: 300;
+    }
+
+    /* SUCCESS STATE */
+    .success-state {
+      display: none;
+      text-align: center;
+      padding: 2rem 1rem;
+    }
+
+    .success-state.visible { display: block; }
+
+    .success-icon {
+      width: 56px;
+      height: 56px;
+      background: var(--amber);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 1.4rem;
+    }
+
+    .success-icon svg { width: 24px; height: 24px; }
+
+    .success-state h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.6rem;
+      font-weight: 500;
+      margin-bottom: 0.8rem;
+      color: var(--ink);
+    }
+
+    .success-state p {
+      font-size: 0.95rem;
+      color: var(--muted);
+      font-weight: 300;
+      line-height: 1.8;
+    }
+
+    /* ERROR */
+    .error-msg {
+      display: none;
+      font-size: 0.82rem;
+      color: #c0392b;
+      margin-top: 0.9rem;
+      text-align: center;
+    }
+
+    .error-msg.visible { display: block; }
+
+    /* CALENDLY SECTION */
+    .calendly-section {
+      background: white;
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      padding: 5rem 2rem;
+    }
+
+    .calendly-inner {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .calendly-header {
+      text-align: center;
+      margin-bottom: 2.5rem;
+    }
+
+    .calendly-header h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1.6rem, 3vw, 2.2rem);
+      font-weight: 500;
+      color: var(--ink);
+      margin-bottom: 0.8rem;
+      margin-top: 1rem;
+    }
+
+    .calendly-header p {
+      font-size: 0.95rem;
+      color: var(--muted);
+      font-weight: 300;
+    }
+
+    .calendly-embed {
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 4px 32px rgba(26,26,24,0.06);
+    }
+
+    /* FOOTER */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 2rem 4rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    footer p {
+      font-size: 0.8rem;
+      color: var(--muted);
+      font-weight: 300;
+    }
+
+    footer a {
+      font-size: 0.8rem;
+      color: var(--muted);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    footer a:hover { color: var(--ink); }
+
+    /* RESPONSIVE */
+    @media (max-width: 768px) {
+      nav { padding: 1.2rem 1.5rem; }
+      .nav-links { gap: 1.4rem; }
+      .hero { padding: 3.5rem 1.5rem 2rem; }
+      .layout { grid-template-columns: 1fr; gap: 3rem; padding: 0 1.5rem 4rem; }
+      footer { flex-direction: column; gap: 0.8rem; padding: 1.5rem; text-align: center; }
+    }
+  </style>
 </head>
 <body>
 
-  <nav class="nav">
-    <div class="nav__inner">
-      <a href="index.html" class="nav__logo">Mircea Oltean</a>
-      <button class="nav__toggle" id="navToggle" aria-label="Toggle menu">
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
-          <line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/>
-        </svg>
-      </button>
-      <ul class="nav__links" id="navLinks">
-        <li><a href="method.html">Method</a></li>
-        <li><a href="proof.html">Proof</a></li>
-        <li><a href="about.html">About</a></li>
-        <li class="nav__cta"><a href="diagnostic.html">Book Diagnostic</a></li>
-      </ul>
-    </div>
+  <nav>
+    <a href="https://mirceaolteaniuliu-oss.github.io/index.html" class="nav-logo">Mircea Oltean</a>
+    <ul class="nav-links">
+      <li><a href="https://mirceaolteaniuliu-oss.github.io/method.html">Method</a></li>
+      <li><a href="https://mirceaolteaniuliu-oss.github.io/proof.html">Proof</a></li>
+      <li><a href="https://mirceaolteaniuliu-oss.github.io/about.html">About</a></li>
+      <li><a href="#" class="active">Book Diagnostic</a></li>
+    </ul>
   </nav>
 
-  <main>
+  <section class="hero">
+    <span class="badge">Free Offer</span>
+    <h1>The Delivery Health Diagnostic</h1>
+    <p>20 minutes. No pitch. A clear framing of where transformation is stalling — and at least one thing you can act on immediately.</p>
+  </section>
 
-    <section class="page-hero">
-      <div class="container">
-        <span class="section-label">Free Offer</span>
-        <h1>The Delivery Health Diagnostic</h1>
-        <p>20 minutes. No pitch. A clear framing of the problem and at least one thing you can act on immediately.</p>
+  <div class="divider"></div>
+
+  <div class="layout">
+
+    <!-- LEFT: INFO -->
+    <div class="info">
+      <h2>What this is</h2>
+      <p>Most transformation conversations start in the wrong place — with solutions. Before I recommend anything, I want to understand the specific shape of your problem.</p>
+      <p>The Diagnostic is a structured 20-minute conversation focused on three questions: Where is change stalling? What has already been tried? And what would "fixed" actually look like for your teams?</p>
+
+      <div class="info-block">
+        <p>"There's no deck. No follow-up proposal unless you ask for one. If there's a fit, we'll both know by the end of the call."</p>
       </div>
-    </section>
 
-    <section>
-      <div class="container">
+      <p>You'll leave with a specific read on where the friction lives — not generic advice, but something grounded in your actual context.</p>
 
-        <h3>What it is</h3>
-        <p>Most transformation conversations start in the wrong place — with solutions. Before I recommend anything, I want to understand the specific shape of your problem.</p>
-        <p>The Delivery Health Diagnostic is a structured 20-minute conversation focused on three questions: Where is change stalling in your organisation? What has already been tried? And what would "fixed" actually look like for your teams?</p>
-
-        <h3>What you get</h3>
-        <p>You'll leave with a clear framing of the problem — not a diagnosis you could have Googled, but a specific read on where the friction lives in your organisation. And at least one thing you can act on immediately, regardless of whether we work together.</p>
-        <p>There's no deck. No follow-up proposal unless you ask for one. If there's a fit, we'll both know by the end of the call.</p>
-
-        <hr class="divider" />
-
-        <h3>Request your Diagnostic</h3>
-        <p style="margin-bottom: 1.5rem; color: #6B7280; font-size: .9rem;">Available to COOs, Heads of Transformation, and CEOs at firms with 200+ people. Limited to four diagnostics per month.</p>
-
-        <form id="diagnosticForm" class="form">
-          <div class="form-row">
-            <label for="name">Your name</label>
-            <input id="name" name="name" type="text" placeholder="Name" required />
-          </div>
-          <div class="form-row">
-            <label for="email">Work email</label>
-            <input id="email" name="email" type="email" placeholder="you@company.com" required />
-          </div>
-          <div class="form-row">
-            <label for="role">Your role</label>
-            <input id="role" name="role" type="text" placeholder="e.g. COO, Head of Transformation" required />
-          </div>
-          <div class="form-row">
-            <label for="company">Company &amp; approximate size</label>
-            <input id="company" name="company" type="text" placeholder="e.g. Acme Financial, ~400 people" required />
-          </div>
-          <div class="form-row">
-            <label for="problem">In one or two sentences, what's the delivery problem you're trying to solve?</label>
-            <textarea id="problem" name="problem" rows="3" placeholder="The more specific, the better." required></textarea>
-          </div>
-          <button type="submit" class="btn">Request My Diagnostic</button>
-          <p id="formResponse" class="response" aria-live="polite"></p>
-        </form>
-
+      <div class="criteria">
+        <h3>Available to</h3>
+        <ul>
+          <li>COOs, CEOs, and Heads of Transformation</li>
+          <li>Organisations with 200+ people</li>
+          <li>Financial services and technology firms</li>
+          <li>Romania, CEE, and DACH markets</li>
+        </ul>
       </div>
-    </section>
 
-  </main>
-
-  <footer>
-    <div class="footer__inner">
-      <span class="footer__name">Mircea Oltean</span>
-      <div class="footer__links">
-        <a href="https://www.linkedin.com/in/mircea-oltean-mba-sa-9ab67919" target="_blank" rel="noopener">LinkedIn</a>
+      <div class="criteria" style="margin-top: 1.6rem;">
+        <h3>Limited slots</h3>
+        <ul>
+          <li>Four diagnostics per month</li>
+          <li>Confirmed within 48 hours of request</li>
+          <li>Conducted over Zoom</li>
+        </ul>
       </div>
     </div>
+
+    <!-- RIGHT: FORM -->
+    <div class="form-card">
+
+      <div id="form-wrapper">
+        <h3>Request your Diagnostic</h3>
+        <p class="form-subtitle">Fill in the details below. I'll confirm within 48 hours.</p>
+
+        <form id="diagnostic-form" action="https://formspree.io/f/mojpkwzy" method="POST">
+
+          <!-- Hidden fields for Formspree -->
+          <input type="hidden" name="_subject" value="New Delivery Health Diagnostic Request" />
+          <input type="hidden" name="_replyto" value="" />
+
+          <div class="field">
+            <label for="name">Full Name</label>
+            <input type="text" id="name" name="name" placeholder="Your full name" required />
+          </div>
+
+          <div class="field">
+            <label for="email">Work Email</label>
+            <input type="email" id="email" name="email" placeholder="you@company.com" required />
+          </div>
+
+          <div class="field">
+            <label for="role">Your Role</label>
+            <select id="role" name="role" required>
+              <option value="" disabled selected>Select your role</option>
+              <option>CEO</option>
+              <option>COO</option>
+              <option>Head of Transformation</option>
+              <option>Head of Engineering</option>
+              <option>VP / Director of Delivery</option>
+              <option>Other Senior Leader</option>
+            </select>
+          </div>
+
+          <div class="field">
+            <label for="company">Company & Approximate Size</label>
+            <input type="text" id="company" name="company" placeholder="e.g. Acme Bank, ~600 people" required />
+          </div>
+
+          <div class="field">
+            <label for="problem">The delivery problem you're trying to solve</label>
+            <textarea id="problem" name="problem" placeholder="In one or two sentences — what's not working, and how long has it been this way?" required></textarea>
+          </div>
+
+          <div class="field">
+            <label for="timing">When are you looking to address this?</label>
+            <select id="timing" name="timing">
+              <option value="" disabled selected>Select a timeframe</option>
+              <option>Urgently — within the next 30 days</option>
+              <option>Soon — within the next quarter</option>
+              <option>Planning ahead — within 6 months</option>
+              <option>Exploring options — no fixed timeline</option>
+            </select>
+          </div>
+
+          <button type="submit" class="submit-btn" id="submit-btn">Request My Diagnostic</button>
+          <p class="form-note">No spam. No pressure. Confirmed within 48 hours.</p>
+          <p class="error-msg" id="error-msg">Something went wrong. Please email me directly at <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="65280c170600040a091100040b0c10090c10250208040c094b060a08">[email&#160;protected]</a></p>
+        </form>
+      </div>
+
+      <!-- SUCCESS STATE -->
+      <div class="success-state" id="success-state">
+        <div class="success-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="20 6 9 17 4 12"></polyline>
+          </svg>
+        </div>
+        <h3>Request received.</h3>
+        <p>Thank you for reaching out. I'll review your details and confirm within 48 hours with a proposed time for our conversation.</p>
+        <p style="margin-top: 1rem;">In the meantime, you might find the <a href="https://mirceaolteaniuliu-oss.github.io/proof.html" style="color: var(--amber); text-decoration: none;">MassMutual case study</a> useful context for our call.</p>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- CALENDLY SECTION -->
+  <section class="calendly-section">
+    <div class="calendly-inner">
+      <div class="calendly-header">
+        <span class="badge">Book Directly</span>
+        <h2>Prefer to pick a time right now?</h2>
+        <p>Skip the back-and-forth. Choose a slot that works for you and I'll come prepared.</p>
+      </div>
+      <div class="calendly-embed">
+        <div class="calendly-inline-widget" data-url="https://calendly.com/mirceaolteaniuliu?hide_landing_page_details=1&hide_gdpr_banner=1&primary_color=c8882a" style="min-width:320px;height:700px;"></div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <p>Mircea Oltean — Leadership & Transformation Consultant</p>
+    <a href="https://www.linkedin.com/in/mircea-oltean-mba-sa-9ab67919" target="_blank" rel="noopener">LinkedIn</a>
   </footer>
 
-  <script src="script.js"></script>
-</body>
-</html>
+  <script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
+  <script>
+    const form = document.getElementById('diagnostic-form');
+    const submitBtn = document.getElementById('submit-btn');
+    const errorMsg = document.getElementById('error-msg');
+    const successState = document.getElementById('success-state');
+    const formWrapper = document.getElementById('form-wrapper');
+
+    form.addEventListener('submit', async function(e) {
+      e.preventDefault();
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Sending…';
+      errorMsg.classList.remove('visible');
+
+      const data = new FormData(form);
+
+      try {
+        const response = await fetch(form.action, {
+          method: 'POST',
+          body: data,
+          headers: { 'Accept': 'application/json' }
+        });
+
+        if (response.ok) {
+          formWrapper.style.display = 'none';
+          successState.classList.add('visible');
+        } else {
+          throw ne
