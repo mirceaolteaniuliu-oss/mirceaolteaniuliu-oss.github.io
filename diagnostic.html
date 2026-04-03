@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Book a Diagnostic — Mircea Oltean</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <nav class="nav">
+    <div class="nav__inner">
+      <a href="index.html" class="nav__logo">Mircea Oltean</a>
+      <button class="nav__toggle" id="navToggle" aria-label="Toggle menu">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
+          <line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/>
+        </svg>
+      </button>
+      <ul class="nav__links" id="navLinks">
+        <li><a href="method.html">Method</a></li>
+        <li><a href="proof.html">Proof</a></li>
+        <li><a href="about.html">About</a></li>
+        <li class="nav__cta"><a href="diagnostic.html">Book Diagnostic</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <main>
+
+    <section class="page-hero">
+      <div class="container">
+        <span class="section-label">Free Offer</span>
+        <h1>The Delivery Health Diagnostic</h1>
+        <p>20 minutes. No pitch. A clear framing of the problem and at least one thing you can act on immediately.</p>
+      </div>
+    </section>
+
+    <section>
+      <div class="container">
+
+        <h3>What it is</h3>
+        <p>Most transformation conversations start in the wrong place — with solutions. Before I recommend anything, I want to understand the specific shape of your problem.</p>
+        <p>The Delivery Health Diagnostic is a structured 20-minute conversation focused on three questions: Where is change stalling in your organisation? What has already been tried? And what would "fixed" actually look like for your teams?</p>
+
+        <h3>What you get</h3>
+        <p>You'll leave with a clear framing of the problem — not a diagnosis you could have Googled, but a specific read on where the friction lives in your organisation. And at least one thing you can act on immediately, regardless of whether we work together.</p>
+        <p>There's no deck. No follow-up proposal unless you ask for one. If there's a fit, we'll both know by the end of the call.</p>
+
+        <hr class="divider" />
+
+        <h3>Request your Diagnostic</h3>
+        <p style="margin-bottom: 1.5rem; color: #6B7280; font-size: .9rem;">Available to COOs, Heads of Transformation, and CEOs at firms with 200+ people. Limited to four diagnostics per month.</p>
+
+        <form id="diagnosticForm" class="form">
+          <div class="form-row">
+            <label for="name">Your name</label>
+            <input id="name" name="name" type="text" placeholder="Name" required />
+          </div>
+          <div class="form-row">
+            <label for="email">Work email</label>
+            <input id="email" name="email" type="email" placeholder="you@company.com" required />
+          </div>
+          <div class="form-row">
+            <label for="role">Your role</label>
+            <input id="role" name="role" type="text" placeholder="e.g. COO, Head of Transformation" required />
+          </div>
+          <div class="form-row">
+            <label for="company">Company &amp; approximate size</label>
+            <input id="company" name="company" type="text" placeholder="e.g. Acme Financial, ~400 people" required />
+          </div>
+          <div class="form-row">
+            <label for="problem">In one or two sentences, what's the delivery problem you're trying to solve?</label>
+            <textarea id="problem" name="problem" rows="3" placeholder="The more specific, the better." required></textarea>
+          </div>
+          <button type="submit" class="btn">Request My Diagnostic</button>
+          <p id="formResponse" class="response" aria-live="polite"></p>
+        </form>
+
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <div class="footer__inner">
+      <span class="footer__name">Mircea Oltean</span>
+      <div class="footer__links">
+        <a href="https://www.linkedin.com/in/mircea-oltean-mba-sa-9ab67919" target="_blank" rel="noopener">LinkedIn</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
