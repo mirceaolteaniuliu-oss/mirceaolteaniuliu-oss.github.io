@@ -3,7 +3,14 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Book a Diagnostic — Mircea Oltean</title>
+  <title>Get in Touch — Mircea Oltean</title>
+  <meta name="description" content="Get in touch with Mircea Oltean — for senior leadership roles, speaking engagements, advisory work, or a conversation about engineering transformation." />
+  <meta property="og:title" content="Get in Touch — Mircea Oltean" />
+  <meta property="og:description" content="Open to senior leadership conversations, speaking engagements, and advisory work. Let's talk." />
+  <meta property="og:image" content="https://mirceaolteaniuliu-oss.github.io/Hero%20background.jpg" />
+  <meta property="og:url" content="https://mirceaolteaniuliu-oss.github.io/diagnostic.html" />
+  <meta property="og:type" content="website" />
+  <meta name="twitter:card" content="summary_large_image" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
@@ -11,13 +18,13 @@
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --ink: #1a1a18;
-      --amber: #c8882a;
-      --amber-light: #e8a84a;
-      --cream: #f7f3ec;
-      --cream-dark: #ede7db;
-      --muted: #6b6560;
-      --border: #d9d0c4;
+      --ink: #1C1917;
+      --amber: #C8882A;
+      --amber-light: #E8A84A;
+      --cream: #FAF8F3;
+      --cream-dark: #F2EDE4;
+      --muted: #78716C;
+      --border: #E4DDD3;
     }
 
     html { scroll-behavior: smooth; }
@@ -35,7 +42,7 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 1.5rem 4rem;
+      padding: 1.25rem 4rem;
       border-bottom: 1px solid var(--border);
       background: var(--cream);
       position: sticky;
@@ -44,18 +51,52 @@
     }
 
     .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 0.65rem;
+      text-decoration: none;
+    }
+
+    .nav-logo img {
+      height: 40px;
+      width: auto;
+      object-fit: contain;
+    }
+
+    .nav-logo-text {
+      display: flex;
+      flex-direction: column;
+      line-height: 1.15;
+    }
+
+    .nav-logo-name {
       font-family: 'Cormorant Garamond', serif;
-      font-size: 1.2rem;
+      font-size: 1.1rem;
       font-weight: 600;
       color: var(--ink);
-      text-decoration: none;
-      letter-spacing: 0.01em;
+    }
+
+    .nav-logo-tagline {
+      font-size: 0.62rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: #A8A29E;
+    }
+
+    .nav-toggle {
+      display: none;
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: var(--ink);
+      padding: 0.25rem;
     }
 
     .nav-links {
       display: flex;
       gap: 2.5rem;
       list-style: none;
+      align-items: center;
     }
 
     .nav-links a {
@@ -68,31 +109,38 @@
       transition: color 0.2s;
     }
 
-    .nav-links a:hover,
+    .nav-links a:hover { color: var(--ink); }
     .nav-links a.active { color: var(--ink); }
 
+    .nav-cta a {
+      background: var(--amber);
+      color: white !important;
+      padding: 0.55rem 1.2rem;
+      border-radius: 4px;
+      transition: background 0.2s !important;
+    }
+
+    .nav-cta a:hover { background: var(--amber-light) !important; }
+
     /* HERO */
-    .hero {
+    .page-hero {
       max-width: 760px;
       margin: 0 auto;
       padding: 5rem 2rem 3rem;
       text-align: center;
     }
 
-    .badge {
+    .section-label {
       display: inline-block;
       font-size: 0.72rem;
       font-weight: 500;
       letter-spacing: 0.12em;
       text-transform: uppercase;
       color: var(--amber);
-      border: 1px solid var(--amber);
-      padding: 0.3rem 0.9rem;
-      border-radius: 2rem;
-      margin-bottom: 1.8rem;
+      margin-bottom: 1.2rem;
     }
 
-    .hero h1 {
+    .page-hero h1 {
       font-family: 'Cormorant Garamond', serif;
       font-size: clamp(2.4rem, 5vw, 3.6rem);
       font-weight: 500;
@@ -101,7 +149,7 @@
       margin-bottom: 1.2rem;
     }
 
-    .hero p {
+    .page-hero p {
       font-size: 1.05rem;
       color: var(--muted);
       max-width: 540px;
@@ -201,7 +249,7 @@
       border: 1px solid var(--border);
       border-radius: 8px;
       padding: 2.4rem;
-      box-shadow: 0 4px 32px rgba(26,26,24,0.06);
+      box-shadow: 0 4px 32px rgba(28,25,23,0.06);
     }
 
     .form-card h3 {
@@ -343,57 +391,6 @@
       line-height: 1.8;
     }
 
-    /* ERROR */
-    .error-msg {
-      display: none;
-      font-size: 0.82rem;
-      color: #c0392b;
-      margin-top: 0.9rem;
-      text-align: center;
-    }
-
-    .error-msg.visible { display: block; }
-
-    /* CALENDLY SECTION */
-    .calendly-section {
-      background: white;
-      border-top: 1px solid var(--border);
-      border-bottom: 1px solid var(--border);
-      padding: 5rem 2rem;
-    }
-
-    .calendly-inner {
-      max-width: 900px;
-      margin: 0 auto;
-    }
-
-    .calendly-header {
-      text-align: center;
-      margin-bottom: 2.5rem;
-    }
-
-    .calendly-header h2 {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(1.6rem, 3vw, 2.2rem);
-      font-weight: 500;
-      color: var(--ink);
-      margin-bottom: 0.8rem;
-      margin-top: 1rem;
-    }
-
-    .calendly-header p {
-      font-size: 0.95rem;
-      color: var(--muted);
-      font-weight: 300;
-    }
-
-    .calendly-embed {
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      overflow: hidden;
-      box-shadow: 0 4px 32px rgba(26,26,24,0.06);
-    }
-
     /* FOOTER */
     footer {
       border-top: 1px solid var(--border);
@@ -421,8 +418,23 @@
     /* RESPONSIVE */
     @media (max-width: 768px) {
       nav { padding: 1.2rem 1.5rem; }
-      .nav-links { gap: 1.4rem; }
-      .hero { padding: 3.5rem 1.5rem 2rem; }
+      .nav-toggle { display: block; }
+      .nav-links {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background: var(--cream);
+        flex-direction: column;
+        padding: 1.5rem;
+        gap: 1.2rem;
+        border-bottom: 1px solid var(--border);
+        box-shadow: 0 4px 16px rgba(28,25,23,0.08);
+      }
+      .nav-links.open { display: flex; }
+      .nav-cta a { display: inline-block; }
+      .page-hero { padding: 3.5rem 1.5rem 2rem; }
       .layout { grid-template-columns: 1fr; gap: 3rem; padding: 0 1.5rem 4rem; }
       footer { flex-direction: column; gap: 0.8rem; padding: 1.5rem; text-align: center; }
     }
@@ -430,26 +442,31 @@
 </head>
 <body>
 
-  <nav>
-    <a href="index.html" class="nav-logo" style="display:flex;align-items:center;gap:0.65rem;">
-      <img src="Logo.jpg" alt="Mircea Oltean logo" style="height:36px;width:auto;object-fit:contain;" />
-      <span style="display:flex;flex-direction:column;line-height:1.1;">
-        <span style="font-family:'Cormorant Garamond',serif;font-size:1.1rem;font-weight:600;color:#1C1917;">Mircea Oltean</span>
-        <span style="font-size:0.62rem;letter-spacing:0.1em;text-transform:uppercase;color:#A8A29E;">Leadership &amp; Transformation</span>
+  <nav id="diagNav">
+    <a href="index.html" class="nav-logo">
+      <img src="Logo.jpg" alt="Mircea Oltean logo" />
+      <span class="nav-logo-text">
+        <span class="nav-logo-name">Mircea Oltean</span>
+        <span class="nav-logo-tagline">Programme Director · Speaker</span>
       </span>
     </a>
-    <ul class="nav-links">
-      <li><a href="method.html">Method</a></li>
-      <li><a href="proof.html">Proof</a></li>
+    <button class="nav-toggle" id="diagNavToggle" aria-label="Toggle menu">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
+        <line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/>
+      </svg>
+    </button>
+    <ul class="nav-links" id="diagNavLinks">
+      <li><a href="method.html">Speaking</a></li>
+      <li><a href="proof.html">Work</a></li>
       <li><a href="about.html">About</a></li>
-      <li><a href="#" class="active">Book Diagnostic</a></li>
+      <li class="nav-cta"><a href="diagnostic.html" class="active">Get in Touch</a></li>
     </ul>
   </nav>
 
-  <section class="hero">
-    <span class="badge">Free Offer</span>
-    <h1>The Delivery Health Diagnostic</h1>
-    <p>20 minutes. No pitch. A clear framing of where transformation is stalling — and at least one thing you can act on immediately.</p>
+  <section class="page-hero">
+    <span class="section-label">Get in Touch</span>
+    <h1>Let's have a conversation.</h1>
+    <p>Whether you're looking to hire, invite me to speak, or just compare notes — I'd like to hear from you.</p>
   </section>
 
   <div class="divider"></div>
@@ -458,32 +475,40 @@
 
     <!-- LEFT: INFO -->
     <div class="info">
-      <h2>What this is</h2>
-      <p>Most transformation conversations start in the wrong place — with solutions. Before I recommend anything, I want to understand the specific shape of your problem.</p>
-      <p>The Diagnostic is a structured 20-minute conversation focused on three questions: Where is change stalling? What has already been tried? And what would "fixed" actually look like for your teams?</p>
+      <h2>What I'm open to</h2>
+      <p>I'm currently exploring senior leadership opportunities and speaking engagements. I'm also happy to connect with peers, potential collaborators, or anyone thinking seriously about engineering transformation.</p>
 
       <div class="info-block">
-        <p>"There's no deck. No follow-up proposal unless you ask for one. If there's a fit, we'll both know by the end of the call."</p>
+        <p>"If there's a fit — for a role, a talk, or a conversation — we'll both know quickly. No lengthy intake process."</p>
       </div>
 
-      <p>You'll leave with a specific read on where the friction lives — not generic advice, but something grounded in your actual context.</p>
+      <p>Send a brief note about what you have in mind. I'll get back to you within 48 hours.</p>
 
       <div class="criteria">
-        <h3>Available to</h3>
+        <h3>Roles I'm considering</h3>
         <ul>
-          <li>COOs, CEOs, and Heads of Transformation</li>
-          <li>Organisations with 200+ people</li>
-          <li>Financial services and technology firms</li>
-          <li>Romania, CEE, and DACH markets</li>
+          <li>Programme Director</li>
+          <li>Head of Engineering / VP Engineering</li>
+          <li>Head of Transformation / COO</li>
+          <li>Advisory &amp; fractional engagements</li>
         </ul>
       </div>
 
       <div class="criteria" style="margin-top: 1.6rem;">
-        <h3>Limited slots</h3>
+        <h3>Speaking &amp; events</h3>
         <ul>
-          <li>Four diagnostics per month</li>
-          <li>Confirmed within 48 hours of request</li>
-          <li>Conducted over Zoom</li>
+          <li>Developer &amp; engineering conferences</li>
+          <li>Leadership summits &amp; company all-hands</li>
+          <li>Podcasts &amp; panel discussions</li>
+        </ul>
+      </div>
+
+      <div class="criteria" style="margin-top: 1.6rem;">
+        <h3>Location &amp; availability</h3>
+        <ul>
+          <li>Based in Bucharest, Romania</li>
+          <li>Open to Romania, CEE, DACH, and remote</li>
+          <li>Confirmed within 48 hours of message</li>
         </ul>
       </div>
     </div>
@@ -492,14 +517,12 @@
     <div class="form-card">
 
       <div id="form-wrapper">
-        <h3>Request your Diagnostic</h3>
-        <p class="form-subtitle">Fill in the details below. I'll confirm within 48 hours.</p>
+        <h3>Send me a message</h3>
+        <p class="form-subtitle">A few details and I'll get back to you within 48 hours.</p>
 
-        <form id="diagnostic-form" action="https://formspree.io/f/mojpkwzy" method="POST">
+        <form id="contact-form" action="https://formspree.io/f/mojpkwzy" method="POST">
 
-          <!-- Hidden fields for Formspree -->
-          <input type="hidden" name="_subject" value="New Delivery Health Diagnostic Request" />
-          <input type="hidden" name="_replyto" value="" />
+          <input type="hidden" name="_subject" value="New message from mirceaoltean.com" />
 
           <div class="field">
             <label for="name">Full Name</label>
@@ -507,47 +530,34 @@
           </div>
 
           <div class="field">
-            <label for="email">Work Email</label>
+            <label for="email">Email</label>
             <input type="email" id="email" name="email" placeholder="you@company.com" required />
           </div>
 
           <div class="field">
-            <label for="role">Your Role</label>
-            <select id="role" name="role" required>
-              <option value="" disabled selected>Select your role</option>
-              <option>CEO</option>
-              <option>COO</option>
-              <option>Head of Transformation</option>
-              <option>Head of Engineering</option>
-              <option>VP / Director of Delivery</option>
-              <option>Other Senior Leader</option>
+            <label for="reason">What's this about?</label>
+            <select id="reason" name="reason" required>
+              <option value="" disabled selected>Select a reason</option>
+              <option>Senior leadership role</option>
+              <option>Speaking engagement</option>
+              <option>Advisory / fractional work</option>
+              <option>Collaboration or partnership</option>
+              <option>Just getting in touch</option>
             </select>
           </div>
 
           <div class="field">
-            <label for="company">Company & Approximate Size</label>
-            <input type="text" id="company" name="company" placeholder="e.g. Acme Bank, ~600 people" required />
+            <label for="company">Organisation (if applicable)</label>
+            <input type="text" id="company" name="company" placeholder="Company or event name" />
           </div>
 
           <div class="field">
-            <label for="problem">The delivery problem you're trying to solve</label>
-            <textarea id="problem" name="problem" placeholder="In one or two sentences — what's not working, and how long has it been this way?" required></textarea>
+            <label for="message">Your message</label>
+            <textarea id="message" name="message" placeholder="Tell me a bit about what you have in mind." required></textarea>
           </div>
 
-          <div class="field">
-            <label for="timing">When are you looking to address this?</label>
-            <select id="timing" name="timing">
-              <option value="" disabled selected>Select a timeframe</option>
-              <option>Urgently — within the next 30 days</option>
-              <option>Soon — within the next quarter</option>
-              <option>Planning ahead — within 6 months</option>
-              <option>Exploring options — no fixed timeline</option>
-            </select>
-          </div>
-
-          <button type="submit" class="submit-btn" id="submit-btn">Request My Diagnostic</button>
-          <p class="form-note">No spam. No pressure. Confirmed within 48 hours.</p>
-          <p class="error-msg" id="error-msg">Something went wrong. Please email me directly at <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="65280c170600040a091100040b0c10090c10250208040c094b060a08">[email&#160;protected]</a></p>
+          <button type="submit" class="submit-btn" id="submit-btn" data-label="Send Message">Send Message</button>
+          <p class="form-note">No spam. No pressure. I'll reply within 48 hours.</p>
         </form>
       </div>
 
@@ -558,46 +568,46 @@
             <polyline points="20 6 9 17 4 12"></polyline>
           </svg>
         </div>
-        <h3>Request received.</h3>
-        <p>Thank you for reaching out. I'll review your details and confirm within 48 hours with a proposed time for our conversation.</p>
-        <p style="margin-top: 1rem;">In the meantime, you might find the <a href="https://mirceaolteaniuliu-oss.github.io/proof.html" style="color: var(--amber); text-decoration: none;">founding case study</a> useful context for our call.</p>
+        <h3>Message received.</h3>
+        <p>Thank you for reaching out. I'll review your message and get back to you within 48 hours.</p>
+        <p style="margin-top: 1rem;">In the meantime, feel free to connect on <a href="https://www.linkedin.com/in/mircea-oltean-mba-sa-9ab67919" target="_blank" rel="noopener" style="color: var(--amber); text-decoration: none;">LinkedIn</a>.</p>
       </div>
 
     </div>
   </div>
 
-  <!-- CALENDLY SECTION -->
-  <section class="calendly-section">
-    <div class="calendly-inner">
-      <div class="calendly-header">
-        <span class="badge">Book Directly</span>
-        <h2>Prefer to pick a time right now?</h2>
-        <p>Skip the back-and-forth. Choose a slot that works for you and I'll come prepared.</p>
-      </div>
-      <div class="calendly-embed">
-        <div class="calendly-inline-widget" data-url="https://calendly.com/mirceaolteaniuliu?hide_landing_page_details=1&hide_gdpr_banner=1&primary_color=c8882a" style="min-width:320px;height:700px;"></div>
-      </div>
-    </div>
-  </section>
-
   <footer>
-    <p>Mircea Oltean — Leadership & Transformation Consultant</p>
+    <p>&copy; 2025 Mircea Oltean. All rights reserved.</p>
     <a href="https://www.linkedin.com/in/mircea-oltean-mba-sa-9ab67919" target="_blank" rel="noopener">LinkedIn</a>
   </footer>
 
-  <script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
   <script>
-    const form = document.getElementById('diagnostic-form');
+    // Mobile nav toggle
+    const diagNavToggle = document.getElementById('diagNavToggle');
+    const diagNavLinks = document.getElementById('diagNavLinks');
+
+    if (diagNavToggle && diagNavLinks) {
+      diagNavToggle.addEventListener('click', () => diagNavLinks.classList.toggle('open'));
+      diagNavLinks.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => diagNavLinks.classList.remove('open'));
+      });
+      document.addEventListener('click', (e) => {
+        if (!diagNavToggle.contains(e.target) && !diagNavLinks.contains(e.target)) {
+          diagNavLinks.classList.remove('open');
+        }
+      });
+    }
+
+    // Form submission
+    const form = document.getElementById('contact-form');
     const submitBtn = document.getElementById('submit-btn');
-    const errorMsg = document.getElementById('error-msg');
     const successState = document.getElementById('success-state');
     const formWrapper = document.getElementById('form-wrapper');
 
     form.addEventListener('submit', async function(e) {
       e.preventDefault();
       submitBtn.disabled = true;
-      submitBtn.textContent = 'Sending…';
-      errorMsg.classList.remove('visible');
+      submitBtn.textContent = 'Sending\u2026';
 
       const data = new FormData(form);
 
@@ -612,4 +622,14 @@
           formWrapper.style.display = 'none';
           successState.classList.add('visible');
         } else {
-          throw ne
+          throw new Error('Form submission failed');
+        }
+      } catch (err) {
+        submitBtn.disabled = false;
+        submitBtn.textContent = submitBtn.getAttribute('data-label') || 'Send Message';
+        alert('Something went wrong. Please email me directly at mirceaolteaniuliu@gmail.com');
+      }
+    });
+  </script>
+</body>
+</html>
