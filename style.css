@@ -187,6 +187,7 @@ img { display: block; max-width: 100%; }
   border-right: var(--gb); border-bottom: var(--gb);
 }
 .cred-item:nth-child(2n)       { border-right: none; }
+.cred-item:nth-child(3)        { grid-column: 1 / -1; border-right: none; }
 .cred-item:nth-last-child(-n+2){ border-bottom: none; }
 .cred-label { font-size: 0.6rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.3rem; }
 .cred-value { font-size: 0.82rem; color: var(--warm-white); font-weight: 500; }
